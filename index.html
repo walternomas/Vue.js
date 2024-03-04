@@ -15,17 +15,11 @@
                     text: 'Hello Vue!',
                 }; 
             },
-            methods: {
-                input(e) {
-                    this.text = e.target.value;
-                }
-            },
             template: `
                 <p>{{ text }}</p>
                 <input 
                     type="text"
-                    @input="input" 
-                    :value="text"
+                    v-model="text"
                 />`
         }).mount("#app");
     </script>
