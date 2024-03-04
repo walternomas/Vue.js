@@ -12,34 +12,21 @@
         const vm = Vue.createApp({
             data() { 
                 return {
-                    counter: 0,
-                    operation: 'reset'
+                    text: 'Hello Vue!',
                 }; 
             },
             methods: {
-                submit() {
-                    if(this.operation == 'increment') {
-                        this.counter += 1;
-                    }else if(this.operation == 'decrement') {
-                        this.counter -= 1;
-                    }else if(this.operation == 'reset') {
-                        this.counter = 0;
-                    }
-                },
-                increment() {
-                    this.operation = 'increment';
-                },
-                decrement() {
-                    this.operation = 'decrement';
-                },
-                reset() {
-                    this.operation = 'reset';
+                input(e) {
+                    this.text = e.target.value;
                 }
             },
-            template: `<form v-on:submit.prevent="submit">
-                <button v-on:click="decrement">-</button>
-                <button v-on:click="reset">{{ counter }}</button>
-                <button v-on:click="increment">+</button></form>`
+            template: `
+                <p>{{ text }}</p>
+                <input 
+                    type="text"
+                    v-on:input="input" 
+                    v-bind:value="text"
+                />`
         }).mount("#app");
     </script>
 </body>
