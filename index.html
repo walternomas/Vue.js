@@ -9,13 +9,14 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <div id="app">{{ text }}</div>
     <script>
-        Vue.createApp({
+        const vue = Vue.createApp({
             data() { 
                 return {
                     text: 'Hello Vue!',
                 }; 
             },
         }).mount("#app");
+        console.log(vue);
     </script>
 </body>
 </html>
