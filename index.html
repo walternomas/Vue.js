@@ -13,15 +13,17 @@
             data() { 
                 return {
                     text: 'Puerta cerrada',
-                    open: false
+                    open: false,
+                    username: ''
                 }; 
             },
             watch: {
                 open(value) {
                     if (value) {
-                        this.text = 'Puerta abierta';
+                        this.text = 'Cierra sesión';
                     } else {
-                        this.text = 'Puerta cerrada';
+                        this.text = 'Accede a tu cuenta';
+                        this.username = '';
                     }
                 }
             },
@@ -30,13 +32,25 @@
                     return this.open ? ['open'] : ['closed'];
                 },
                 label() {
-                    return this.open ? "Cerrar" : "Abrir";
+                    return this.open ? "Salir" : "Acceder";
                 }
             },
             template: `
                 <div class="container" :class="styles">
                     <h2>{{ text }}</h2>
-                    <button @click="open = !open">{{ label }}</button>
+                    <div v-if="open">
+                        <p>Hola, {{ username }}!</p>
+                    </div>
+                    <div v-else>
+                        <p>
+                            <label>Username</label>
+                            <input type="text" v-model="username">
+                        </p>
+                    </div>
+                    <button @click="open = !open">
+                        <div v-if="!open">Acceder</div>
+                        <div v-else>Salir</div>
+                    </button>
                 </div>
             `
         }).mount("#app");
