@@ -14,7 +14,25 @@
                 return {
                     text: 'Puerta cerrada',
                     open: false,
-                    username: ''
+                    username: '',
+                    posts: [
+                        {
+                            title: "Título 1",
+                            description: "Lorem ipsum dolor sit amet..."
+                        },
+                        {
+                            title: "Título 2",
+                            description: "Lorem ipsum dolor sit down..."
+                        },
+                        {
+                            title: "Título 3",
+                            description: "Lorem ipsum dolor sit up..."
+                        },
+                        {
+                            title: "Título 4",
+                            description: "Lorem ipsum dolor sit rex..."
+                        }
+                    ]
                 }; 
             },
             watch: {
@@ -40,11 +58,17 @@
                     <h2>{{ text }}</h2>
                     <div v-if="open">
                         <p>Hola, {{ username }}!</p>
+                        <div class="list">
+                            <div v-for="(item, i) in posts" :key="i" class="item">
+                                <div class="title">{{ item.title }}</div>
+                                <p>{{ item.description }}</p>
+                            </div>
+                        </div>
                     </div>
                     <div v-else>
                         <p>
                             <label>Username</label>
-                            <input type="text" v-model="username">
+                            <input type="text" v-model="username" />
                         </p>
                     </div>
                     <button @click="open = !open">
@@ -81,6 +105,17 @@
         }
         .open {
             background-color: #b5e7a0;
+        }
+        .list {
+            display: flex;
+            flex-direction: column;
+        }
+        .item {
+            border: 1px solid black;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 1.2rem;
         }
     </style>
 </body>
